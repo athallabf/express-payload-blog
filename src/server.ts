@@ -20,11 +20,14 @@ const start = async () => {
   });
 
   // Add your own express routes here
-  app.get('/test', (req, res) => {
-    res.json({ test: 'ngops' });
+  app.get('/test', async (req, res) => {
+    const users = await payload.find({
+      collection: 'users',
+    });
+    res.json(users);
   });
 
-  app.listen(3000);
+  app.listen(process.env.PORT);
 };
 
 start();
